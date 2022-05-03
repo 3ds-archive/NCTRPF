@@ -70,7 +70,7 @@ $(BUILD):
 #---------------------------------------------------------------------------------
 clean:
 	@echo clean ... 
-	@rm -fr $(BUILD) $(OUTPUT).3gx
+	@rm -fr $(BUILD) $(OUTPUT).3gx $(OUTPUT).elf
 
 re: clean all
 
@@ -100,7 +100,6 @@ $(OUTPUT).3gx : $(OFILES)
 #---------------------------------------------------------------------------------
 	@echo creating $(notdir $@)
 	@3gxtool -s $(word 1, $^) $(TOPDIR)/$(PLGINFO) $@
-	@mv $(TOPDIR)/NCTRPF.elf $(TOPDIR)/$(BUILD)/
 
 -include $(DEPENDS)
 
