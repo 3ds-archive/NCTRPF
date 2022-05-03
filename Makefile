@@ -14,10 +14,6 @@ BUILD		:= 	Build
 INCLUDES	:= 	Includes
 SOURCES 	:= 	Sources Sources/NCTRPF
 
-ifneq ($(shell gcc -Q --help=target | grep -m1 -e -march | awk '{print $$2}'),x86-64)
-QEMU		:=  qemu-x86_64
-endif
-
 #---------------------------------------------------------------------------------
 # options for code generation
 #---------------------------------------------------------------------------------
@@ -103,7 +99,7 @@ $(OUTPUT).3gx : $(OFILES)
 %.3gx: %.elf
 #---------------------------------------------------------------------------------
 	@echo creating $(notdir $@)
-	@$(QEMU) $(dir $(shell which 3gxtool))3gxtool -s $(word 1, $^) $(TOPDIR)/$(PLGINFO) $@
+	@3gxtool -s $(word 1, $^) $(TOPDIR)/$(PLGINFO) $@
 	@mv $(TOPDIR)/NCTRPF.elf $(TOPDIR)/$(BUILD)/
 
 -include $(DEPENDS)
